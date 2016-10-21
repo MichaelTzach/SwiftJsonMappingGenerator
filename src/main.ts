@@ -1,14 +1,16 @@
-import { generateCodeWithOptions, StringProperty } from './code_gen/codeGen';
+import { generateCodeWithOptions, BasicPropertyType, EnumProperty, NonObjectProperty, ObjectProperty, EnumCase } from './code_gen/codeGen';
 
 // function hello(compiler: string) {
 //   console.log(`Hello from2 ${compiler}`);
 // }
 // hello("TypeScript");
 
-let testStringProperty1 = new StringProperty("string test 1", true, "string test 12");
-let testStringProperty2 = new StringProperty("string test 2", false);
+let testStringProperty1 = new NonObjectProperty("variable with", true, BasicPropertyType.Int);
 
-let jsonStringProp = [testStringProperty1, testStringProperty2];
+let enumCasesTest1 = [new EnumCase("caseName1", "caseName1String")];
+let testEnumProperty1 = new EnumProperty("enumName", false, enumCasesTest1, "enumObjectName");
+
+let jsonStringProp = [testStringProperty1, testEnumProperty1];
 
 let x = generateCodeWithOptions(jsonStringProp);
 console.log(x);
