@@ -1,3 +1,5 @@
-[11:59:44] Using gulpfile ~/Documents/Developer/Private/SwiftJsonMappingGenerator/gulpfile.js
-[11:59:44] Starting 'default'...
-[11:59:45] Finished 'default' after 1.15 s
+[13:10:07] Using gulpfile ~/Documents/Developer/Private/SwiftJsonMappingGenerator/gulpfile.js
+[13:10:07] Starting 'default'...
+[13:10:08] TypeScript: 2 semantic errors
+[13:10:08] TypeScript: emit succeeded (with errors)
+[13:10:08] Finished 'default' after 1.18 s

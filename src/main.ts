@@ -14,4 +14,4 @@ let testEnumProperty1 = new EnumProperty("enumName", false, enumCasesTest1, "enu
 let jsonStringProp = [testStringProperty1, testEnumProperty1];
 
 let x = generateCodeWithOptions(jsonStringProp);
-console.log(x);
+// console.log(x);

@@ -5,7 +5,9 @@
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "gulp > \"logs/gulp.log\" && node dist/main.js"
+    "start": "gulp > \"logs/gulp.log\" && node dist/main.js",
+    "postinstall": "typings install",
+    "typings": "typings"
   },
   "author": "",
   "license": "ISC",
