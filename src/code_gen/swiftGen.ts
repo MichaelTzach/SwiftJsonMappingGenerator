@@ -1,5 +1,5 @@
 import {
-    BasicProperty, NonObjectProperty, BasicPropertyType, EnumProperty, ObjectProperty,
+    PropertyDefinition, NonObjectProperty, BasicPropertyType, EnumProperty, ObjectProperty,
     EnumCase
 } from "./propertyModel";
 
@@ -7,11 +7,11 @@ function legalVarName(checkedVarName: string) : string {
     return checkedVarName.replace(/ /g,'');
 }
 
-export function swiftLegalVarNameOfPropertyDefinition(propertyDefinition: BasicProperty) : string {
+export function swiftLegalVarNameOfPropertyDefinition(propertyDefinition: PropertyDefinition) : string {
     return legalVarName(propertyDefinition.varName);
 }
 
-export function swiftTypeOfPropertyDefinition(propertyDefinition: BasicProperty) : string {
+export function swiftTypeOfPropertyDefinition(propertyDefinition: PropertyDefinition) : string {
     if (propertyDefinition instanceof NonObjectProperty) {
         let nonObjectProperty = <NonObjectProperty>propertyDefinition;
         switch (nonObjectProperty.propertyType) {

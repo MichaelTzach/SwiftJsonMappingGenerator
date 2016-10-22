@@ -9,7 +9,13 @@ export class EnumCase {
                 public caseString: string) {}
 }
 
-export abstract class BasicProperty {
+export interface PropertyDefinition {
+    varName: string
+    isOptional: boolean
+    jsonKeyPath?: string
+}
+
+abstract class BasicProperty implements PropertyDefinition {
     constructor(public varName: string,
                 public isOptional: boolean,
                 public jsonKeyPath?: string) {

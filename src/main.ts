@@ -1,4 +1,5 @@
-import { generateCodeWithOptions, BasicPropertyType, EnumProperty, NonObjectProperty, ObjectProperty, EnumCase } from './code_gen/codeGen';
+import { generateCodeWithOptions } from './code_gen/codeGen';
+import {BasicPropertyType, NonObjectProperty, EnumCase, EnumProperty} from "./code_gen/propertyModel";
 
 // function hello(compiler: string) {
 //   console.log(`Hello from2 ${compiler}`);

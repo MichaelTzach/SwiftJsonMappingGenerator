@@ -1,12 +1,14 @@
 import {PropertyCode} from "./codeModel";
-import {EnumProperty, BasicProperty} from "./propertyModel";
+import {EnumProperty, PropertyDefinition} from "./propertyModel";
 import { swiftLegalVarNameOfPropertyDefinition, swiftTypeOfPropertyDefinition, swiftEnumCodeOfEnumNameAndEnumCases } from "./swiftGen";
 
-export function generateGlossProperty(propertyDefinition: BasicProperty) : PropertyCode {
+export function generateGlossProperty(propertyDefinition: PropertyDefinition) : PropertyCode {
     let optionalCode = propertyDefinition.isOptional ? "?" : "";
     let propertyTypeCode = swiftTypeOfPropertyDefinition(propertyDefinition);
     let legalVariableName = swiftLegalVarNameOfPropertyDefinition(propertyDefinition);
-    let variableCode = `let ${propertyDefinition.varName}: ${propertyTypeCode}${optionalCode}`;
+
+    //Create code
+    let variableCode = `let ${legalVariableName}: ${propertyTypeCode}${optionalCode}`;
     let deserializationCode = `self.${propertyDefinition.varName} = "${propertyDefinition.jsonKeyPath}" <~~ json`
 
     let enumCode: string;
@@ -17,6 +19,3 @@ export function generateGlossProperty(propertyDefinition: BasicProperty) : Prope
 
     return new PropertyCode(variableCode, deserializationCode, enumCode);
 }
-
-
-
