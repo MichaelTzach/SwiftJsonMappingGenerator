@@ -2,6 +2,13 @@ import {PropertyCode} from "./codeModel";
 import {EnumProperty, PropertyDefinition} from "./propertyModel";
 import { swiftLegalVarNameOfPropertyDefinition, swiftTypeOfPropertyDefinition, swiftEnumCodeOfEnumNameAndEnumCases } from "./swiftGen";
 
+export const GlossConsts = {
+    objectImplements: "Decdable",
+    initFunctionSigniture: "init?(json: JSON)",
+    imports: ["Gloss"]
+}
+
+
 export function generateGlossProperty(propertyDefinition: PropertyDefinition) : PropertyCode {
     let optionalCode = propertyDefinition.isOptional ? "?" : "";
     let propertyTypeCode = swiftTypeOfPropertyDefinition(propertyDefinition);

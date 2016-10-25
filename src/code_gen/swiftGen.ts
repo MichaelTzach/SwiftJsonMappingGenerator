@@ -15,11 +15,7 @@ export function swiftLegalVarNameOfPropertyDefinition(propertyDefinition: Proper
 export function swiftTypeOfPropertyDefinition(propertyDefinition: PropertyDefinition) : string {
     if (propertyDefinition instanceof NonObjectProperty) {
         let nonObjectProperty = <NonObjectProperty>propertyDefinition;
-        switch (nonObjectProperty.propertyType) {
-            case BasicPropertyType.String: return "String";
-            case BasicPropertyType.Int: return "Int";
-            case BasicPropertyType.URL: return "URL";
-        }
+        return BasicPropertyType[nonObjectProperty.propertyType];
     }
 
     if (propertyDefinition instanceof EnumProperty) {
@@ -44,7 +40,7 @@ export function swiftEnumCodeOfEnumNameAndEnumCases(enumName: string, enumCases:
 }
 
 export enum ObjectGeneratorType {
-    Struct,
+    Struct = 1,
     Class
 }
 
@@ -56,13 +52,13 @@ function addTabToEachNewLineInString(str: string, numberOfTabs?: number) : strin
     return str.replace(/^/gm, tabsString)
 }
 
-export class CreateObjectOptions {
-    constructor(public objectName: string,
-                public objectImplements: string,
-                public initFunctionSigniture: string,
-                public codeDefinitions: PropertyCode[],
-                public type: ObjectGeneratorType,
-                public imports?: string[]) {}
+export interface CreateObjectOptions {
+    objectName: string
+    objectImplements: string
+    initFunctionSigniture: string
+    codeDefinitions: PropertyCode[]
+    type: ObjectGeneratorType
+    imports?: string[]
 }
 
 export function createSwiftObjectWithCodeDefinitions(options: CreateObjectOptions) : string {
@@ -111,7 +107,7 @@ export function createSwiftObjectWithCodeDefinitions(options: CreateObjectOption
                         beforeInitMark,
                         initString,
                         objectClose].join("\n\n");
-    console.log(objectCode);
+
     return objectCode;
 }
 

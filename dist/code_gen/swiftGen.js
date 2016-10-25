@@ -10,11 +10,7 @@ exports.swiftLegalVarNameOfPropertyDefinition = swiftLegalVarNameOfPropertyDefin
 function swiftTypeOfPropertyDefinition(propertyDefinition) {
     if (propertyDefinition instanceof propertyModel_1.NonObjectProperty) {
         var nonObjectProperty = propertyDefinition;
-        switch (nonObjectProperty.propertyType) {
-            case propertyModel_1.BasicPropertyType.String: return "String";
-            case propertyModel_1.BasicPropertyType.Int: return "Int";
-            case propertyModel_1.BasicPropertyType.URL: return "URL";
-        }
+        return propertyModel_1.BasicPropertyType[nonObjectProperty.propertyType];
     }
     if (propertyDefinition instanceof propertyModel_1.EnumProperty) {
         var enumProperty = propertyDefinition;
@@ -35,8 +31,8 @@ function swiftEnumCodeOfEnumNameAndEnumCases(enumName, enumCases) {
 }
 exports.swiftEnumCodeOfEnumNameAndEnumCases = swiftEnumCodeOfEnumNameAndEnumCases;
 (function (ObjectGeneratorType) {
-    ObjectGeneratorType[ObjectGeneratorType["Struct"] = 0] = "Struct";
-    ObjectGeneratorType[ObjectGeneratorType["Class"] = 1] = "Class";
+    ObjectGeneratorType[ObjectGeneratorType["Struct"] = 1] = "Struct";
+    ObjectGeneratorType[ObjectGeneratorType["Class"] = 2] = "Class";
 })(exports.ObjectGeneratorType || (exports.ObjectGeneratorType = {}));
 var ObjectGeneratorType = exports.ObjectGeneratorType;
 function addTabToEachNewLineInString(str, numberOfTabs) {
@@ -46,18 +42,6 @@ function addTabToEachNewLineInString(str, numberOfTabs) {
     }
     return str.replace(/^/gm, tabsString);
 }
-var CreateObjectOptions = (function () {
-    function CreateObjectOptions(objectName, objectImplements, initFunctionSigniture, codeDefinitions, type, imports) {
-        this.objectName = objectName;
-        this.objectImplements = objectImplements;
-        this.initFunctionSigniture = initFunctionSigniture;
-        this.codeDefinitions = codeDefinitions;
-        this.type = type;
-        this.imports = imports;
-    }
-    return CreateObjectOptions;
-}());
-exports.CreateObjectOptions = CreateObjectOptions;
 function createSwiftObjectWithCodeDefinitions(options) {
     var importString = "\n";
     if (options.imports) {
@@ -93,7 +77,6 @@ function createSwiftObjectWithCodeDefinitions(options) {
         beforeInitMark,
         initString,
         objectClose].join("\n\n");
-    console.log(objectCode);
     return objectCode;
 }
 exports.createSwiftObjectWithCodeDefinitions = createSwiftObjectWithCodeDefinitions;

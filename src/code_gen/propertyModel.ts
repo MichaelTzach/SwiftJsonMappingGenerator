@@ -1,5 +1,5 @@
 export enum BasicPropertyType {
-    String,
+    String = 1,
     Int,
     URL
 }

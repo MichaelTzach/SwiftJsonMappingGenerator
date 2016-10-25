@@ -5,9 +5,9 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 (function (BasicPropertyType) {
-    BasicPropertyType[BasicPropertyType["String"] = 0] = "String";
-    BasicPropertyType[BasicPropertyType["Int"] = 1] = "Int";
-    BasicPropertyType[BasicPropertyType["URL"] = 2] = "URL";
+    BasicPropertyType[BasicPropertyType["String"] = 1] = "String";
+    BasicPropertyType[BasicPropertyType["Int"] = 2] = "Int";
+    BasicPropertyType[BasicPropertyType["URL"] = 3] = "URL";
 })(exports.BasicPropertyType || (exports.BasicPropertyType = {}));
 var BasicPropertyType = exports.BasicPropertyType;
 var EnumCase = (function () {

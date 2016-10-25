@@ -2,6 +2,11 @@
 var codeModel_1 = require("./codeModel");
 var propertyModel_1 = require("./propertyModel");
 var swiftGen_1 = require("./swiftGen");
+exports.GlossConsts = {
+    objectImplements: "Decdable",
+    initFunctionSigniture: "init?(json: JSON)",
+    imports: ["Gloss"]
+};
 function generateGlossProperty(propertyDefinition) {
     var optionalCode = propertyDefinition.isOptional ? "?" : "";
     var propertyTypeCode = swiftGen_1.swiftTypeOfPropertyDefinition(propertyDefinition);
