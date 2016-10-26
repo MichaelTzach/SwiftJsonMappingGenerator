@@ -20,13 +20,20 @@ function jsonToParsingOptions(json) {
         propertyType: prop.propertyType,
         jsonKeyPath: prop.jsonKeyPath
     });
+    var prop2 = jsonProperties[1];
+    var propDef2 = codeGen_1.createEnumProperty({
+        varName: prop.varName,
+        isOptional: prop.isOptional,
+        enumCases: [["case1", "case1value"]],
+        enumName: "EnumName"
+    });
     if (!propDef) {
         return null;
     }
     return {
         objectName: jsonObjectName,
         type: jsonType,
-        propertyDefinitions: [propDef]
+        propertyDefinitions: [propDef2]
     };
 }
 exports.jsonToParsingOptions = jsonToParsingOptions;

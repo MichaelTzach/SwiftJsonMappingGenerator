@@ -26,6 +26,16 @@ function createNonObjectProperty(options) {
     return new propertyModel_1.NonObjectProperty(options.varName, options.isOptional, propertyTypeEnum, options.jsonKeyPath);
 }
 exports.createNonObjectProperty = createNonObjectProperty;
+function enumCaseFromEnumTuple(tuple) {
+    return new propertyModel_1.EnumCase(tuple[0], tuple[1]);
+}
+function createEnumProperty(options) {
+    var enumCaseObjects = options.enumCases.map(function (enumTuple) {
+        return enumCaseFromEnumTuple(enumTuple);
+    });
+    return new propertyModel_1.EnumProperty(options.varName, options.isOptional, enumCaseObjects, options.enumName, options.jsonKeyPath);
+}
+exports.createEnumProperty = createEnumProperty;
 function objectGeneratorTypeFromString(str) {
     switch (str.toLowerCase()) {
         case "struct":

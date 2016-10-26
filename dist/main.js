@@ -32,6 +32,6 @@ var genOptions = parser_1.jsonToParsingOptions({
         }
     ]
 });
-console.log(genOptions);
+// console.log(genOptions)
 var x = codeGen_1.generateCodeWithOptions(genOptions);
-// console.log(x); 
+console.log(x);

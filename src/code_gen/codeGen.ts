@@ -1,4 +1,4 @@
-import {PropertyDefinition, BasicPropertyType, NonObjectProperty, EnumCase, EnumProperty} from "./propertyModel";
+import {PropertyDefinition, BasicPropertyType, NonObjectProperty, EnumCase, EnumProperty, ObjectProperty} from "./propertyModel";
 import {generateGlossProperty, GlossConsts} from "./glossGen";
 import {createSwiftObjectWithCodeDefinitions, ObjectGeneratorType} from "./swiftGen";
 
@@ -54,6 +54,14 @@ export function createEnumProperty(options: CreateEnumObjectPropertyOptions) :Pr
         return enumCaseFromEnumTuple(enumTuple);
     })
     return new EnumProperty(options.varName, options.isOptional, enumCaseObjects, options.enumName, options.jsonKeyPath);
+}
+
+export interface CreateObjectPropertyOptions extends CreatePropertyOptions {
+    objectName: string
+}
+
+export function createObjectProperty(options: CreateObjectPropertyOptions) : PropertyDefinition {
+    return new ObjectProperty(options.varName, options.isOptional, options.objectName, options.jsonKeyPath);
 }
 
 
