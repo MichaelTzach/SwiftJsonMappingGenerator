@@ -27,8 +27,14 @@ var genOptions = parser_1.jsonToParsingOptions({
         {
             varName: "var 1",
             isOptional: true,
-            propertyType: "string",
-            jsonKeyPath: "jsonKeyPath"
+            // propertyType: "string",
+            jsonKeyPath: "jsonKeyPath",
+            // objectName: "something",
+            enumName: "Wheather",
+            enumCases: {
+                Rainy: "Rainy",
+                Sunny: "Sunny"
+            }
         }
     ]
 });

@@ -4,7 +4,7 @@ import {
 } from "./propertyModel";
 import {PropertyCode} from "./codeModel";
 
-function legalVarName(checkedVarName: string) : string {
+export function legalVarName(checkedVarName: string) : string {
     return checkedVarName.replace(/ /g,'');
 }
 

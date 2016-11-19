@@ -20,53 +20,53 @@ export function jsonToParsingOptions(json: any) :GenerateCodeOptions {
     }
     let jsonProperties = <any[]>json.properties;
 
-
-    let prop = jsonProperties[0];
-    let propDef = createNonObjectProperty({
-        varName: prop.varName,
-        isOptional: prop.isOptional,
-        propertyType: prop.propertyType,
-        jsonKeyPath: prop.jsonKeyPath
-    })
-
-    let prop2 = jsonProperties[1];
-    let propDef2 = createEnumProperty({
-        varName: prop.varName,
-        isOptional: prop.isOptional,
-        enumCases: [["case1", "case1value"]],
-        enumName: "EnumName"
-    })
-
-    if (!propDef) {
-        return null;
-    }
+    let propertyDefinitions = jsonProperties.map(propertyJsonToPropertyDefinition);
 
     return {
         objectName: jsonObjectName,
         type: jsonType,
-        propertyDefinitions: [propDef2]
+        propertyDefinitions: propertyDefinitions
     }
 }
 
 function propertyJsonToPropertyDefinition(json: any) :PropertyDefinition {
-    if (!json.hasOwnProperty("varName") || (typeof json.isOptional !== "string")) { return null; }
+    if (!json.hasOwnProperty("varName") || (typeof json.varName !== "string")) { return null; }
     let varName = <string>json.varName;
+
     if (!json.hasOwnProperty("isOptional") || (typeof json.isOptional !== "boolean")) { return null; }
     let isOptional = <boolean>json.isOptional;
-    if (json.hasOwnProperty("jsonKeyPath") || (typeof json.isOptional !== "string")) { return null; }
+
+    if (!json.hasOwnProperty("jsonKeyPath") || (typeof json.jsonKeyPath !== "string")) { return null; }
     let jsonKeyPath = <string>json.jsonKeyPath;
 
-    let propertyCreateOptions = { varName, isOptional, jsonKeyPath };
-
     if (json.hasOwnProperty("objectName") && (typeof json.objectName === "string")) {
-        propertyCreateOptions["objectName"] = <string>json.objectName;
+        let jsonObjectName = <string>json.objectName;
         return createObjectProperty({
-            varName: json.varName,
-            isOptional: json.isOptional,
-            jsonKeyPath: json.jsonKeyPath,
-            objectName: json.objectName
+            varName: varName,
+            isOptional: isOptional,
+            jsonKeyPath: jsonKeyPath,
+            objectName: jsonObjectName
         })
     }
+
+    if (json.hasOwnProperty("enumName") && (typeof json.enumName === "string") &&
+        json.hasOwnProperty("enumCases") && (typeof json.enumCases === "object")) {
+        let enumName = <string>json.enumName;
+        let enumCasesKeys = Object.keys(json.enumCases);
+        let enumCasesObjects = enumCasesKeys.reduce( (preiousObjectArray, currentKey) => {
+            //todo: check if value is string, else throw
+            return preiousObjectArray.concat([[currentKey, json.enumCases[currentKey]]]);
+        }, []);
+        return createEnumProperty({
+            varName: varName,
+            isOptional: isOptional,
+            jsonKeyPath: jsonKeyPath,
+            enumName: enumName,
+            enumCases: enumCasesObjects
+        });
+    }
+
+
 
     return null;
 }

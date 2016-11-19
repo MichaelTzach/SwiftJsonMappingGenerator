@@ -36,6 +36,10 @@ function createEnumProperty(options) {
     return new propertyModel_1.EnumProperty(options.varName, options.isOptional, enumCaseObjects, options.enumName, options.jsonKeyPath);
 }
 exports.createEnumProperty = createEnumProperty;
+function createObjectProperty(options) {
+    return new propertyModel_1.ObjectProperty(options.varName, options.isOptional, options.objectName, options.jsonKeyPath);
+}
+exports.createObjectProperty = createObjectProperty;
 function objectGeneratorTypeFromString(str) {
     switch (str.toLowerCase()) {
         case "struct":
